@@ -1,6 +1,10 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.RuleName;
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,46 +13,68 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
+import com.nnk.springboot.domain.RuleName;
+import com.nnk.springboot.services.RuleService;
 
 @Controller
 public class RuleNameController {
-    // TODO: Inject RuleName service
+	
+	private final Logger logger = LoggerFactory.getLogger(RuleNameController.class);
+	
+   @Autowired
+   private RuleService ruleService;
 
     @RequestMapping("/ruleName/list")
     public String home(Model model)
     {
-        // TODO: find all RuleName, add to model
+    	logger.info("ruleName list");
+        model.addAttribute("ruleNames", ruleService.findAll());
         return "ruleName/list";
     }
 
     @GetMapping("/ruleName/add")
     public String addRuleForm(RuleName bid) {
+    	logger.info("add ruleName form");
         return "ruleName/add";
     }
 
     @PostMapping("/ruleName/validate")
     public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
-        // TODO: check data valid and save to db, after saving return RuleName list
-        return "ruleName/add";
+    	logger.info("ruleName validate");
+    	if (!result.hasErrors()) {
+    		ruleService.save(ruleName);
+        model.addAttribute("ruleNames", ruleService.findAll());
+        return "redirect:/ruleName/list";
+    	}
+    	return "ruleName/add";
     }
 
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        // TODO: get RuleName by Id and to model then show to the form
+    	logger.info("update ruleName form");
+        RuleName ruleName = ruleService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
+        model.addAttribute("ruleName", ruleName);
         return "ruleName/update";
     }
 
     @PostMapping("/ruleName/update/{id}")
     public String updateRuleName(@PathVariable("id") Integer id, @Valid RuleName ruleName,
                              BindingResult result, Model model) {
-        // TODO: check required fields, if valid call service to update RuleName and return RuleName list
+    	logger.info("update ruleName");
+    	if (result.hasErrors()) {
+            return "ruleName/update";
+        }
+    	ruleService.save(ruleName);
+        model.addAttribute("ruleNames", ruleService.findAll());
         return "redirect:/ruleName/list";
     }
 
     @GetMapping("/ruleName/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
-        // TODO: Find RuleName by Id and delete the RuleName, return to Rule list
+    	logger.info("delete ruleName");
+    	RuleName ruleName = ruleService.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid ruleName Id:" + id));
+    	ruleService.delete(ruleName);
+        model.addAttribute("ruleNames", ruleService.findAll());
         return "redirect:/ruleName/list";
     }
 }

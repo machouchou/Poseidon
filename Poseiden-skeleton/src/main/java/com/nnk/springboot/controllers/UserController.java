@@ -1,12 +1,17 @@
 package com.nnk.springboot.controllers;
 
+import com.nnk.springboot.config.PasswordConfig;
 import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,24 +21,39 @@ import javax.validation.Valid;
 
 @Controller
 public class UserController {
-    @Autowired
+	
+	private final Logger logger = LoggerFactory.getLogger(UserController.class);
+    
+	@Autowired
     private UserRepository userRepository;
 
     @RequestMapping("/user/list")
     public String home(Model model)
     {
+    	logger.info("user list");
         model.addAttribute("users", userRepository.findAll());
         return "user/list";
     }
 
     @GetMapping("/user/add")
     public String addUser(User bid) {
+    	logger.info("add user");
         return "user/add";
     }
 
     @PostMapping("/user/validate")
     public String validate(@Valid User user, BindingResult result, Model model) {
+    	logger.info("user validate");
+    	
+    	PasswordConfig validator = PasswordConfig.buildValidator(true, true, true, 8, 12);
+    	
+    	boolean ifPasswordNotMatches = validator.validatePassword(user.getPassword());
+    	if(ifPasswordNotMatches == true) {
+    		ObjectError error = new ObjectError("globalError", "password must be match rule");
+    		result.addError(error);
+    	}
         if (!result.hasErrors()) {
+        	
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
             userRepository.save(user);
@@ -45,6 +65,7 @@ public class UserController {
 
     @GetMapping("/user/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+    	logger.info("update user form ");
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         user.setPassword("");
         model.addAttribute("user", user);
@@ -54,6 +75,7 @@ public class UserController {
     @PostMapping("/user/update/{id}")
     public String updateUser(@PathVariable("id") Integer id, @Valid User user,
                              BindingResult result, Model model) {
+    	logger.info("update user, password encode");
         if (result.hasErrors()) {
             return "user/update";
         }
@@ -68,6 +90,7 @@ public class UserController {
 
     @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id, Model model) {
+    	logger.info("delete user");
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         userRepository.delete(user);
         model.addAttribute("users", userRepository.findAll());

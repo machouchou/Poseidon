@@ -1,12 +1,17 @@
 package com.nnk.springboot.domain;
 
-import javax.persistence.*;
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import java.sql.Timestamp;
 
 @Getter @Setter
 @Entity
@@ -14,15 +19,19 @@ import java.sql.Timestamp;
 public class Trade {
 	
 	@Id
+	//@NotNull(message="Trade Id must not be null")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer tradeId;
+	private Integer id;
 	
+	@Column(name="account")
 	@NotBlank(message = "Account is mandatory")
 	private String account;
 	
+	@Column(name="type")
 	@NotBlank(message = "Type is mandatory")
 	private String type;
 	
+	@Column(name="buy_quantity")
 	private Double buyQuantity;
 	
 	private Double sellQuantity;
@@ -59,5 +68,4 @@ public class Trade {
 	
 	private String side;
 
-    // TODO: Map columns in data table TRADE with corresponding java fields
 }

@@ -1,13 +1,11 @@
 package com.nnk.springboot.domain;
 
-import org.hibernate.validator.constraints.Length;
-
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
 import java.sql.Timestamp;
 
 @Getter @Setter
@@ -18,10 +16,20 @@ public class CurvePoint {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotNull(message="Curve Id must not be null")
+	@Column(name="curve_id")
 	private Integer curveId;
+	
+	//@Column(name="as_of_date")
 	private Timestamp asOfDate;
+	
+	@Column(name="term")
 	private Double term;
+	
+	@Column(name="value")
 	private Double value;
+	
+	//@Column(name="creation_date")
 	private Timestamp creationDate;
-    // TODO: Map columns in data table CURVEPOINT with corresponding java fields
 }
