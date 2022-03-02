@@ -73,25 +73,25 @@ public class BidTests {
 			assertTrue(lResult.stream().anyMatch(bid ->bid.getBidQuantity().equals(bid1.getBidQuantity())));
 		}
 
-		@Test
-		public void findByIdTest() {
-			bidService = new BidService(bidRepository);
-			
-			BidList bid = new BidList();
-			bid.setAccount("Account test");
-			bid.setType("Type Test");
-			bid.setBidQuantity(10d);
-			bid.setId(2);
-			
-			Optional<BidList> optResult = Optional.of(bid);
-			
-			when(bidRepository.findById(2)).thenReturn(optResult);
-			
-			Optional<BidList> optBid = bidService.findById(2);
-			
-			assertEquals(optResult.get().getBidQuantity(), optBid.get().getBidQuantity());
-			
-		}
+	@Test
+	public void findByIdTest() {
+		bidService = new BidService(bidRepository);
+		
+		BidList bid = new BidList();
+		bid.setAccount("Account test");
+		bid.setType("Type Test");
+		bid.setBidQuantity(10d);
+		bid.setId(2);
+		
+		Optional<BidList> optResult = Optional.of(bid);
+		
+		when(bidRepository.findById(2)).thenReturn(optResult);
+		
+		Optional<BidList> optBid = bidService.findById(2);
+		
+		assertEquals(optResult.get().getBidQuantity(), optBid.get().getBidQuantity());
+		
+	}
 	@Test
 	public void deleteBidTest() {
 		bidService = new BidService(bidRepository);
