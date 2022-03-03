@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.nnk.springboot.config.GithubUser;
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.services.RuleService;
 
@@ -23,11 +24,15 @@ public class RuleNameController {
 	
    @Autowired
    private RuleService ruleService;
+   
+   @Autowired
+	private GithubUser githubUser;
 
     @RequestMapping("/ruleName/list")
     public String home(Model model)
     {
     	logger.info("ruleName list");
+    	model.addAttribute("username", githubUser.getUsername());
         model.addAttribute("ruleNames", ruleService.findAll());
         return "ruleName/list";
     }

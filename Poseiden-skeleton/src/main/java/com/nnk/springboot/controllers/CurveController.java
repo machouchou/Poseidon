@@ -1,5 +1,6 @@
 package com.nnk.springboot.controllers;
 
+import com.nnk.springboot.config.GithubUser;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.services.CurvePointService;
 
@@ -23,11 +24,15 @@ public class CurveController {
 
 	@Autowired
 	private CurvePointService curvePointService;
+	
+	@Autowired
+	private GithubUser githubUser;
 
     @RequestMapping("/curvePoint/list")
     public String home(Model model)
     {
     	logger.info("listing Curvepoints");
+    	model.addAttribute("username", githubUser.getUsername());
         model.addAttribute("curvePoints", curvePointService.findAll());
         return "curvePoint/list";
     }

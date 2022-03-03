@@ -1,5 +1,6 @@
 package com.nnk.springboot.controllers;
 
+import com.nnk.springboot.config.GithubUser;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.services.BidService;
 
@@ -24,11 +25,16 @@ public class BidListController {
 	
     @Autowired
     private BidService bidService;
+    
+    @Autowired
+	private GithubUser githubUser;
 
     @RequestMapping("/bidList/list")
     public String home(Model model)
     {
     	logger.info("bidList list");
+    	System.out.println(githubUser.getUsername());
+    	model.addAttribute("username", githubUser.getUsername());
         model.addAttribute("bidLists", bidService.findAll());
         return "bidList/list";
     }

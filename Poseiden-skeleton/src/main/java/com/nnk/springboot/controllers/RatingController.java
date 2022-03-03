@@ -1,5 +1,6 @@
 package com.nnk.springboot.controllers;
 
+import com.nnk.springboot.config.GithubUser;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.services.RatingService;
 
@@ -24,10 +25,26 @@ public class RatingController {
 	@Autowired
 	private RatingService ratingService;
 
+	@Autowired
+	private GithubUser githubUser;
+	
     @RequestMapping("/rating/list")
     public String home(Model model)
     {
     	logger.info("rating list");
+    	/*String currentPrincipalName;
+    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication.getClass().isAssignableFrom(OAuth2AuthenticationToken.class)) {
+			OAuth2AuthenticationToken oauthToken = (OAuth2AuthenticationToken) authentication;
+			OAuth2User oAuth2User = oauthToken.getPrincipal();
+			Map<String,Object> attributes =  oAuth2User.getAttributes();
+			currentPrincipalName = (String) attributes.get("login");
+		} else {
+			currentPrincipalName = authentication.getName();
+		}*/
+
+    	System.out.println(githubUser.getUsername());
+    	model.addAttribute("username", githubUser.getUsername());
     	model.addAttribute("ratings", ratingService.findAll());
         return "rating/list";
     }

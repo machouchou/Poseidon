@@ -19,18 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	@Autowired
     private CustomAuthenticationProvider authProvider;
-
-   /* @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-            .dataSource(dataSource)
-            .usersByUsernameQuery("select username, password, fullname "
-                + "from users "
-                + "where username = ?")
-            .authoritiesByUsernameQuery("select username, role "
-                + "from users "
-                + "where username = ?");
-    }*/
+    
 	@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authProvider);
@@ -51,6 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
           .formLogin()
           .and()
           .oauth2Login();
+       
     }
 
 }
