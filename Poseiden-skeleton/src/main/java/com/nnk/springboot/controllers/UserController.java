@@ -1,9 +1,8 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.config.PasswordConfig;
-import com.nnk.springboot.domain.User;
-import com.nnk.springboot.repositories.UserRepository;
-import com.nnk.springboot.services.UserService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +20,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import com.nnk.springboot.config.PasswordConfig;
+import com.nnk.springboot.domain.User;
+import com.nnk.springboot.services.UserService;
 
 @Controller
 public class UserController {
@@ -48,24 +47,25 @@ public class UserController {
     }
 
     @PostMapping("/user/validate")
-    public String validate(@Valid User user, BindingResult result, Model model) {
+    public String validate(@Valid User user, BindingResult result, Model model) throws Exception {
     	logger.info("user validate");
     	
-    	PasswordConfig validator = PasswordConfig.buildValidator(true, true, true, 8, 12);
+    	boolean isMatched = new PasswordConfig().validatePassword(user.getPassword());
     	
-    	boolean ifPasswordNotMatches = validator.validatePassword(user.getPassword());
-    	if(ifPasswordNotMatches == true) {
-    		ObjectError error = new ObjectError("globalError", "password must be match rule");
+    	if (!isMatched) {
+    		ObjectError error = new ObjectError("globalError", "password must be match the rule");
     		result.addError(error);
     	}
+    	
         if (!result.hasErrors()) {
         	
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             user.setPassword(encoder.encode(user.getPassword()));
-            userService.save(user);
+           userService.save(user);
             model.addAttribute("users", userService.findAll());
             return "redirect:/user/list";
         }
+        
         return "user/add";
     }
 

@@ -38,17 +38,6 @@
 		    </exclusions>
 		</dependency>
 		<dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter-api</artifactId>
-    <scope>test</scope>
-  </dependency>
-  <dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter-engine</artifactId>
-    <scope>test</scope>
-  </dependency>
-		
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
@@ -62,11 +51,6 @@
 			<version>2.1.1</version>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
@@ -79,7 +63,27 @@
 			<artifactId>spring-security-oauth2-client</artifactId>
 			<version>5.0.4.RELEASE</version>
 		</dependency>
-
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-api</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-engine</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>3.3.3</version>
+            <scope>test</scope>
+        </dependency>
 		<dependency>
 			<groupId>org.jacoco</groupId>
 			<artifactId>jacoco-maven-plugin</artifactId>
@@ -198,6 +202,9 @@
 						</reports>
 					</reportSet>
 				</reportSets>
+				<configuration>
+					<configLocation>${basedir}/checkstyle-checker.xml</configLocation>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -218,39 +225,10 @@
 						<exclude>**/*Trade.class</exclude>
 						<exclude>**/*User.class</exclude>
 						<exclude>**/*Application.class</exclude>
-						<!--<exclude>**/*Account.class</exclude> <exclude>**/*AppAccount.class</exclude> 
-							<exclude>**/*Friend.class</exclude> <exclude>**/*FriendRelationship.class</exclude> 
-							<exclude>**/*Response.class</exclude> <exclude>**/*Transaction.class</exclude> 
-							<exclude>**/*User.class</exclude> -->
 					</excludes>
 
 				</configuration>
-
 			</plugin>
-    <plugin>
-     <groupId>org.eclipse.m2e</groupId>
-     <artifactId>lifecycle-mapping</artifactId>
-     <version>1.0.0</version>
-     <configuration>
-       <lifecycleMappingMetadata>
-         <pluginExecutions>
-           <pluginExecution>
-             <pluginExecutionFilter>
-               <groupId>some-group-id</groupId>
-               <artifactId>some-artifact-id</artifactId>
-               <versionRange>[1.0.0,)</versionRange>
-               <goals>
-                 <goal>some-goal</goal>
-               </goals>
-             </pluginExecutionFilter>
-             <action>
-               <ignore/>
-             </action>
-           </pluginExecution>
-         </pluginExecutions>
-       </lifecycleMappingMetadata>
-     </configuration>
-    </plugin>
-  </plugins>
+  		</plugins>
 	</reporting>
 </project>

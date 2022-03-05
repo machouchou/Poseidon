@@ -5,7 +5,7 @@ import com.nnk.springboot.repositories.RuleNameRepository;
 import com.nnk.springboot.services.RuleService;
 
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

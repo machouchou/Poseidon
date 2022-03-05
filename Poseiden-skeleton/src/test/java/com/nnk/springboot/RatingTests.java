@@ -14,9 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
 import com.nnk.springboot.services.RatingService;
@@ -75,8 +74,8 @@ public class RatingTests {
 		assertEquals(lResult.size(), ratings.size());
 		assertTrue(lResult.stream().anyMatch(rating -> rating.getId().equals(rating1.getId())));
 	}
-	
-	/*public void findById() {
+	@Test
+	public void findById() {
 		ratingService = new RatingService(ratingRepository);
 		
 		Rating rating =new Rating();
@@ -92,9 +91,9 @@ public class RatingTests {
 		Optional<Rating> optRating = ratingService.findById(4);
 		
 		assertEquals(optResultat.get().getId(), optRating.get().getId());
-	}*/
-		@Test
-		public void deleteRatingTest() {
+	}
+	@Test
+	public void deleteRatingTest() {
 			ratingService = new RatingService(ratingRepository);
 			Rating rating = new Rating();
 			rating.setMoodysRating("Moodys Rating");
