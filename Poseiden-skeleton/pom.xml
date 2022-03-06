@@ -225,6 +225,20 @@
 						<exclude>**/*Trade.class</exclude>
 						<exclude>**/*User.class</exclude>
 						<exclude>**/*Application.class</exclude>
+						<exclude>**/*CustomAuthenticationProvider.class</exclude>
+						<exclude>**/*GithubUser.class</exclude>
+						<exclude>**/*PasswordConfig.class</exclude>
+						<exclude>**/*SocialConfig.class</exclude>
+						<exclude>**/*SecurityConfiguration.class</exclude>
+						<exclude>**/*User.class</exclude>
+						<exclude>**/*BidListController.class</exclude>
+						<exclude>**/*CurveController.class</exclude>
+						<exclude>**/*HomeController.class</exclude>
+						<exclude>**/*LoginController.class</exclude>
+						<exclude>**/*RatingController.class</exclude>
+						<exclude>**/*RuleNameController.class</exclude>
+						<exclude>**/*TradeController.class</exclude>
+						<exclude>**/*UserController.class</exclude>
 					</excludes>
 
 				</configuration>

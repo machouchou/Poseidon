@@ -20,7 +20,7 @@ import com.nnk.springboot.domain.User;
 import com.nnk.springboot.repositories.UserRepository;
 import com.nnk.springboot.services.UserService;
 
-public class UserTests {
+public class UserTest {
 	
 	private UserRepository userRepository =Mockito.mock(UserRepository.class);
 

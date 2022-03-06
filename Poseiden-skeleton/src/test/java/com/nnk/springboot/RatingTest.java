@@ -20,7 +20,7 @@ import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
 import com.nnk.springboot.services.RatingService;
 
-public class RatingTests {
+public class RatingTest {
 
 	private RatingRepository ratingRepository =Mockito.mock(RatingRepository.class);
 
