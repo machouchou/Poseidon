@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class CurvePointTests {
+public class CurvePointTest {
 
 	private CurvePointRepository curvePointRepository = Mockito.mock(CurvePointRepository.class);
 

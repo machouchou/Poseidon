@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class TradeTests {
+public class TradeTest {
 
 	private TradeRepository tradeRepository =Mockito.mock(TradeRepository.class);;
 

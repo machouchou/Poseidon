@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class RuleTests {
+public class RuleTest {
 
 	private RuleNameRepository ruleNameRepository = Mockito.mock(RuleNameRepository.class);
 

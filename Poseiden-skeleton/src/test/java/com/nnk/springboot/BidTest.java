@@ -21,7 +21,7 @@ import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.services.BidService;
 
-public class BidTests {
+public class BidTest {
 
 	private BidListRepository bidRepository = Mockito.mock(BidListRepository.class);
 	
