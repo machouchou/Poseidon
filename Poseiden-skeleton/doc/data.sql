@@ -1,6 +1,9 @@
+DROP DATABASE poseidon;
+CREATE DATABASE poseidon;
+USE poseidon;
 
 CREATE TABLE bidlist (
-  id tinyint(4) NOT NULL AUTO_INCREMENT,
+  id tinyint(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
   bid_quantity DOUBLE,
@@ -21,13 +24,11 @@ CREATE TABLE bidlist (
   deal_name VARCHAR(125),
   deal_type VARCHAR(125),
   source_list_id VARCHAR(125),
-  side VARCHAR(125),
+  side VARCHAR(125)
+);
 
-  PRIMARY KEY (id)
-)
-
-CREATE TABLE trade (
-  id tinyint(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE trade ( 
+  id tinyint(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
   buy_quantity DOUBLE,
@@ -47,53 +48,43 @@ CREATE TABLE trade (
   deal_name VARCHAR(125),
   deal_type VARCHAR(125),
   source_list_id VARCHAR(125),
-  side VARCHAR(125),
-
-  PRIMARY KEY (id)
-)
+  side VARCHAR(125)
+);
 
 CREATE TABLE curvepoint (
-  id tinyint(4) NOT NULL AUTO_INCREMENT,
+  id tinyint(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   curve_id tinyint,
   as_of_date TIMESTAMP,
   term DOUBLE ,
   value DOUBLE ,
-  creation_date TIMESTAMP ,
-
-  PRIMARY KEY (id)
-)
+  creation_date TIMESTAMP
+);
 
 CREATE TABLE rating (
-  id tinyint(4) NOT NULL AUTO_INCREMENT,
+  id tinyint(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   moodys_rating VARCHAR(125),
   sandprating VARCHAR(125),
   fitch_rating VARCHAR(125),
-  order_number tinyint,
-
-  PRIMARY KEY (id)
-)
+  order_number tinyint
+);
 
 CREATE TABLE rulename (
-  id tinyint(4) NOT NULL AUTO_INCREMENT,
+  id tinyint(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(125),
   description VARCHAR(125),
   json VARCHAR(125),
   template VARCHAR(512),
-  sql VARCHAR(125),
-  sql_part VARCHAR(125),
-
-  PRIMARY KEY (id)
-)
+  sql_str VARCHAR(125),
+  sql_part VARCHAR(125)
+);
 
 CREATE TABLE Users (
-  Id tinyint(4) NOT NULL AUTO_INCREMENT,
+  Id tinyint(4) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(125),
   password VARCHAR(125),
   fullname VARCHAR(125),
-  role VARCHAR(125),
+  role VARCHAR(125)
+);
 
-  PRIMARY KEY (Id)
-)
-
-insert into Users(fullname, username, password, role) values("Administrator", "admin", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "ADMIN")
-insert into Users(fullname, username, password, role) values("User", "user", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "USER")
+insert into Users(fullname, username, password, role) values("Administrator", "admin", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "ADMIN");
+insert into Users(fullname, username, password, role) values("User", "user", "$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa", "USER");
