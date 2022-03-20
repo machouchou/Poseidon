@@ -1,13 +1,14 @@
-# spring-boot
+# spring-boot : Poseidon - Project N°7 
 ## Technical:
 
 1. Framework: Spring Boot v2.0.4
 2. Java 8
 3. Thymeleaf
 4. Bootstrap v.4.3.1
+5. Maven
 
 
-## Setup with Intellij IDE
+## Setup with Eclipse IDE
 1. Create project from Initializr: File > New > project > Spring Initializr
 2. Add lib repository into pom.xml
 3. Add folders
@@ -29,3 +30,27 @@
 ## Security
 1. Create user service to load user from  database and place in package com.nnk.springboot.services
 2. Add configuration class and place in package com.nnk.springboot.config
+
+## Getting Started
+ 
+ To run the project after cloning, add to the pom.xml these dependencies :
+
+ <dependency>
+   <groupId>javax.xml.bind</groupId>
+   <artifactId>jaxb-api</artifactId>
+</dependency>
+<dependency>
+   <groupId>com.sun.xml.bind</groupId>
+   <artifactId>jaxb-core</artifactId>
+   <version>2.2.11</version>
+</dependency>
+<dependency>
+   <groupId>com.sun.xml.bind</groupId>
+   <artifactId>jaxb-impl</artifactId>
+   <version>2.2.11</version>
+</dependency>
+<dependency>
+   <groupId>javax.activation</groupId>
+   <artifactId>activation</artifactId>
+   <version>1.1.1</version>
+</dependency>
