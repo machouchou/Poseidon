@@ -5,44 +5,6 @@ import java.util.regex.Pattern;
 
 public class PasswordConfig {
 	
-	/*
-	 private static PasswordConfig INSTANCE = new PasswordConfig();
-	  private static String pattern = null;
-	 
-	 
-	  
-	   * Force the user to build a validator using this way only
-	   * 
-	  public PasswordConfig buildValidator( boolean forceSpecialChar,
-	                          boolean forceCapitalLetter,
-	                          boolean forceNumber,
-	                          int minLength,
-	                          int maxLength)
-	  {
-	    StringBuilder patternBuilder = new StringBuilder("((?=.*[a-z])");
-	 
-	    if (forceSpecialChar)
-	    {
-	      patternBuilder.append("(?=.*[@#$%])");
-	    }
-	 
-	    if (forceCapitalLetter)
-	    {
-	      patternBuilder.append("(?=.*[A-Z])");
-	    }
-	 
-	    if (forceNumber)
-	    {
-	      patternBuilder.append("(?=.*d)");
-	    }
-	 
-	    patternBuilder.append(".{" + minLength + "," + maxLength + "})");
-	    pattern = patternBuilder.toString();
-	 
-	    return INSTANCE;
-	  }
-	 
-	  */
 	  /**
 	   * Here we will validate the password
 	   * */

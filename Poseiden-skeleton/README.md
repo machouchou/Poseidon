@@ -31,26 +31,3 @@
 1. Create user service to load user from  database and place in package com.nnk.springboot.services
 2. Add configuration class and place in package com.nnk.springboot.config
 
-## Getting Started
- 
- To run the project after cloning, add to the pom.xml these dependencies :
-
- <dependency>
-   <groupId>javax.xml.bind</groupId>
-   <artifactId>jaxb-api</artifactId>
-</dependency>
-<dependency>
-   <groupId>com.sun.xml.bind</groupId>
-   <artifactId>jaxb-core</artifactId>
-   <version>2.2.11</version>
-</dependency>
-<dependency>
-   <groupId>com.sun.xml.bind</groupId>
-   <artifactId>jaxb-impl</artifactId>
-   <version>2.2.11</version>
-</dependency>
-<dependency>
-   <groupId>javax.activation</groupId>
-   <artifactId>activation</artifactId>
-   <version>1.1.1</version>
-</dependency>

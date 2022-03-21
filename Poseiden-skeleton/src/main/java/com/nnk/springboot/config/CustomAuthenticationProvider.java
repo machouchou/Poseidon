@@ -34,8 +34,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         if (result) {
  
-            // use the credentials
-            // and authenticate against the third-party system
             return new UsernamePasswordAuthenticationToken(
               name, password, new ArrayList<>());
         } else {
