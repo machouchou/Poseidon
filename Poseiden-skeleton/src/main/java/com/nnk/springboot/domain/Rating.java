@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Rating {
 	
 	@Id
-	@NotNull(message="Rating Id must not be null")
+	//@NotNull(message="Rating Id must not be null")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Integer id;
 	
